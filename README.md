@@ -62,9 +62,9 @@ const sleepAndReturn = (message) => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve(message);
-		}, 1000)
+		}, 1000);
 	});
-}
+};
 
 // This function acts just like one above, exept it is very fast after the first time
 const cachedFunction = wrapper("sleepAndReturn", sleepAndReturn);
