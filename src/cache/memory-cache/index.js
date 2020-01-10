@@ -40,6 +40,8 @@ module.exports = (...args) => {
 
 		clear: (name) => {
 			delete storage._storage[name];
+
+			return Promise.resolve();
 		}
 	};
 

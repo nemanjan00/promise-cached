@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "./dev/lint.sh",
     "mkdocs": "./dev/makedocs.sh",
-    "test": "nyc mocha --reporter spec --timeout 60000 tests/index.js",
-    "test-coverage": "nyc --reporter=json mocha --reporter spec --timeout 60000 tests/index.js",
+    "test": "nyc mocha --exit --reporter spec --timeout 60000 tests/index.js",
+    "test-coverage": "nyc --reporter=json mocha --exit --reporter spec --timeout 60000 tests/index.js",
     "coverage": "nyc report --reporter=text-lcov"
   },
   "husky": {
@@ -37,6 +37,7 @@
     "eslint": "^6.8.0",
     "husky": "^4.0.6",
     "implement-js": "^0.0.27",
+    "node-cache-redis": "^2.14.0",
     "redis": "^2.8.0"
   },
   "devDependencies": {
