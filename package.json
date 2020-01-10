@@ -1,0 +1,24 @@
+{
+  "name": "promise-cached",
+  "version": "0.0.0",
+  "description": "Transparent cache for promise response for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nemanjan00/promise-cached.git"
+  },
+  "keywords": [
+    "cache",
+    "redis",
+    "promise"
+  ],
+  "author": "nemanjan00 <nemanjan00@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nemanjan00/promise-cached/issues"
+  },
+  "homepage": "https://github.com/nemanjan00/promise-cached#readme"
+}
