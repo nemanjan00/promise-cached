@@ -9,6 +9,17 @@ describe("cache", function() {
 		});
 	});
 
-	require("./storage")("Memory", cache("memory://", { ttl: 1000 }));
-	require("./storage")("Redis", cache("redis://127.0.0.1:6379", { ttl: 1000 }));
+	it("It uses environment variable if no url specified", function(done) {
+		cache(undefined).then(() => {
+			done();
+		}).catch(() => {
+			done(new Error("Did not use default URL"));
+		});
+	});
+
+	require("./storage")("Memory", cache("memory://", { ttl: 1000 }), true);
+	require("./storage")("Redis", cache("redis://127.0.0.1:6379", { ttl: 1000 }), true);
+
+	require("./storage")("Memory without ttl", cache("memory://"));
+	require("./storage")("Redis without ttl", cache("redis://127.0.0.1:6379"));
 });

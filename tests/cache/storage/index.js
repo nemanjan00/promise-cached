@@ -2,7 +2,7 @@ const implement = require("implement-js");
 
 const storageInterface = require("./interface");
 
-module.exports = (name, engine) => {
+module.exports = (name, engine, testExpiration) => {
 	describe(`${name} cache engine`, function() {
 		it("Implements storage interface", function(done) {
 			engine.then(implementation => {
@@ -59,31 +59,33 @@ module.exports = (name, engine) => {
 			});
 		});
 
-		it("Stored key-value pairs expire", function(done) {
-			engine.then(implementation => {
-				if(implementation.store === undefined) {
-					done(new Error("There is no store function"));
-					return;
-				}
-
-				implementation.store("name", "value").then(() => {
-					if(implementation.get === undefined) {
-						done(new Error("There is no get function"));
+		if(testExpiration) {
+			it("Stored key-value pairs expire", function(done) {
+				engine.then(implementation => {
+					if(implementation.store === undefined) {
+						done(new Error("There is no store function"));
 						return;
 					}
 
-					setTimeout(() => {
-						implementation.get("name").then(() => {
-							done(new Error("Value did not expire"));
-						}).catch(() => {
-							done();
-						});
-					}, 1500);
-				}).catch((error) => {
-					done(error);
+					implementation.store("name", "value").then(() => {
+						if(implementation.get === undefined) {
+							done(new Error("There is no get function"));
+							return;
+						}
+
+						setTimeout(() => {
+							implementation.get("name").then(() => {
+								done(new Error("Value did not expire"));
+							}).catch(() => {
+								done();
+							});
+						}, 1500);
+					}).catch((error) => {
+						done(error);
+					});
 				});
 			});
-		});
+		}
 
 		it("Stored key-value pairs can be cleared", function(done) {
 			engine.then(implementation => {
