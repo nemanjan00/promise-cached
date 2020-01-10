@@ -7,7 +7,9 @@ module.exports = (...args) => {
 		_storage: undefined,
 
 		_init: (url, options) => {
-			storage._options = options || {};
+			storage._options = options || {
+				ttl: 60 * 1000
+			};
 
 			storage._storage = new redisCache({
 				redisOptions: {
