@@ -51,11 +51,7 @@ This library provides wrapper for promise returning functions.
 ### Basic usage
 
 ```javascript
-const promiseCached = require("promise-cached");
-
-const wrapper = promiseCached({
-	ttl: 10 * 1000 // Cache lasts for 10 seconds
-});
+const wrapper = require("promise-cached");
 
 // This is a very slow function that returns same response, every time, for same params
 const sleepAndReturn = (message) => {
@@ -66,8 +62,12 @@ const sleepAndReturn = (message) => {
 	});
 };
 
+const options = {
+	ttl: 10 * 1000 // Cache lasts for 10 seconds
+};
+
 // This function acts just like one above, exept it is very fast after the first time
-const cachedFunction = wrapper("sleepAndReturn", sleepAndReturn);
+const cachedFunction = wrapper("sleepAndReturn", sleepAndReturn, options);
 
 cachedFunction("💪").then(() => {
 	console.log("This took 1s");
@@ -83,17 +83,17 @@ cachedFunction("💪").then(() => {
 You can for example use this library to cache http responses.
 
 ```javascript
-const promiseCached = require("promise-cached");
+const wrapper = require("promise-cached");
 
-const wrapper = promiseCached({
+const options = {
 	ttl: 10 * 1000 // Cache lasts for 10 seconds
-});
+};
 
 const axios = require("axios");
 
 const originalGet = axios.get;
 
-axios.get = wrapper(originalGet);
+axios.get = wrapper("axios.get", originalGet, options);
 ```
 
 ## Contribution guide

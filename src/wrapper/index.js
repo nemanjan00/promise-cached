@@ -35,7 +35,7 @@ module.exports = (...args) => {
 		},
 
 		calee: (...args) => {
-			const argsHash = wrapper._name + ":" + crypto.createHash("sha256").update(JSON.stringify(args), "utf8").digest();
+			const argsHash = wrapper._name + ":" + crypto.createHash("sha256").update(JSON.stringify(args), "utf8").digest("hex");
 
 			return new Promise((resolve, reject) => {
 				wrapper._initPromise.then(() => {
