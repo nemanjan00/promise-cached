@@ -15,10 +15,12 @@ module.exports = (connectionUrl, options) => {
 
 	const settings = url.parse(settingsUrl);
 
+	settings.protocol = settings.protocol.split(":").join("");
+
 	if(engines[settings.protocol] == undefined) {
 		return Promise.reject("Specified cache protocol is not recognised: " + settingsUrl);
 	}
 
-	return engines[url.protocol](url, options);
+	return engines[settings.protocol](url, options);
 };
 

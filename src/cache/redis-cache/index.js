@@ -1,2 +1,4 @@
-module.exports = () => {};
+module.exports = () => {
+	return Promise.resolve({});
+};
 
