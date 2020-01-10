@@ -4,7 +4,18 @@
   "description": "Transparent cache for promise response for Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "./node_modules/.bin/eslint --fix .",
+    "mkdocs": "./dev/makedocs.sh",
+    "test": "nyc mocha --reporter spec --timeout 60000 tests/index.js",
+    "coverage": "nyc report --reporter=text-lcov"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint ; yarn test"
+    }
+  },
+  "nyc": {
+    "exclude": "tests/**"
   },
   "repository": {
     "type": "git",
@@ -20,5 +31,13 @@
   "bugs": {
     "url": "https://github.com/nemanjan00/promise-cached/issues"
   },
-  "homepage": "https://github.com/nemanjan00/promise-cached#readme"
+  "homepage": "https://github.com/nemanjan00/promise-cached#readme",
+  "dependencies": {
+    "eslint": "^6.8.0",
+    "husky": "^4.0.6"
+  },
+  "devDependencies": {
+    "mocha": "^7.0.0",
+    "nyc": "^15.0.0"
+  }
 }
