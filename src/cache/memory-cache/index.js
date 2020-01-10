@@ -1,8 +1,10 @@
+const storageObject = {};
+
 module.exports = (...args) => {
 	const storage = {
 		_options: undefined,
 
-		_storage: {},
+		_storage: storageObject,
 
 		_init: (_url, options) => {
 			storage._options = options || {};

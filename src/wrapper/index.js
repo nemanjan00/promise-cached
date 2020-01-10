@@ -19,9 +19,15 @@ module.exports = (...args) => {
 			wrapper._options = options || {};
 
 			if(wrapper._options.cacheEngine !== undefined) {
-				wrapper._cacheEngine = wrapper._options.cacheEngine;
+				wrapper._cacheEngine = promisify(wrapper._options.cacheEngine);
 
-				wrapper._initPromise = Promise.resolve(wrapper.calee);
+				wrapper._initPromise = new Promise((resolve) => {
+					wrapper._cacheEngine.then(engine => {
+						wrapper._cacheEngine = engine;
+
+						resolve();
+					});
+				});
 			}
 
 			wrapper._initPromise = new Promise((resolve, reject) => {
