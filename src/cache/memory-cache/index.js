@@ -12,19 +12,19 @@ module.exports = (...args) => {
 			return Promise.resolve(storage);
 		},
 
-		_ttlTimoouts: {},
+		_ttlTimeouts: {},
 
 		store: (name, value) => {
 			storage._storage[name] = value;
 
 			if(storage._options.ttl !== undefined) {
-				if(storage._ttlTimoouts[name] !== undefined) {
-					clearTimeout(storage._ttlTimoouts[name]);
+				if(storage._ttlTimeouts[name] !== undefined) {
+					clearTimeout(storage._ttlTimeouts[name]);
 
-					delete storage._ttlTimoouts[name];
+					delete storage._ttlTimeouts[name];
 				}
 
-				storage._ttlTimoouts[name] = setTimeout(() => {
+				storage._ttlTimeouts[name] = setTimeout(() => {
 					delete storage._storage[name];
 				}, storage._options.ttl);
 			}
