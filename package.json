@@ -34,7 +34,8 @@
   "homepage": "https://github.com/nemanjan00/promise-cached#readme",
   "dependencies": {
     "eslint": "^6.8.0",
-    "husky": "^4.0.6"
+    "husky": "^4.0.6",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "eslint-plugin-mocha": "^6.2.2",
