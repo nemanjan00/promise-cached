@@ -67,7 +67,7 @@ const sleepAndReturn = (message) => {
 }
 
 // This function acts just like one above, exept it is very fast after the first time
-const cachedFunction = wrapper(sleepAndReturn);
+const cachedFunction = wrapper("sleepAndReturn", sleepAndReturn);
 
 cachedFunction("💪").then(() => {
 	console.log("This took 1s");
