@@ -3,9 +3,16 @@
         "es6": true,
         "node": true,
         "browser": true,
-        "commonjs": true
+        "commonjs": true,
+        "mocha": true
     },
-    "extends": "eslint:recommended",
+    "plugins": [
+      "mocha"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:mocha/recommended"
+    ],
     "parserOptions": {
         "sourceType": "module",
         "ecmaVersion": 6
@@ -28,6 +35,7 @@
             "always"
         ],
         "no-redeclare": 1,
-        "no-trailing-spaces": "error"
+        "no-trailing-spaces": "error",
+        "mocha/no-setup-in-describe": 0
     }
 }

@@ -1,2 +1,3 @@
-module.exports = {};
+describe("promise-cached", function() {
+});
 
