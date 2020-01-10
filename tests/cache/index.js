@@ -9,6 +9,6 @@ describe("cache", function() {
 		});
 	});
 
-	require("./storage")("Memory", cache("memory://"));
-	require("./storage")("Redis", cache("redis://127.0.0.1:6379"));
+	require("./storage")("Memory", cache("memory://", { ttl: 1000 }));
+	require("./storage")("Redis", cache("redis://127.0.0.1:6379", { ttl: 1000 }));
 });

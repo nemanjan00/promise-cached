@@ -60,7 +60,29 @@ module.exports = (name, engine) => {
 		});
 
 		it("Stored key-value pairs expire", function(done) {
-			done();
+			engine.then(implementation => {
+				if(implementation.store === undefined) {
+					done("There is no store function");
+					return;
+				}
+
+				implementation.store("name", "value").then(() => {
+					if(implementation.get === undefined) {
+						done("There is no get function");
+						return;
+					}
+
+					setTimeout(() => {
+						implementation.get("name").then(() => {
+							done("Value did not expire");
+						}).catch(() => {
+							done();
+						});
+					}, 1500);
+				}).catch((error) => {
+					done(error);
+				});
+			});
 		});
 	});
 };

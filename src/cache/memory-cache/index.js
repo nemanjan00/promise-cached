@@ -5,7 +5,7 @@ module.exports = (...args) => {
 		_storage: {},
 
 		_init: (_url, options) => {
-			storage._options = options;
+			storage._options = options || {};
 
 			return Promise.resolve(storage);
 		},
@@ -15,7 +15,7 @@ module.exports = (...args) => {
 		store: (name, value) => {
 			storage._storage[name] = value;
 
-			if(storage._storage.ttl !== undefined) {
+			if(storage._options.ttl !== undefined) {
 				if(storage._ttlTimoouts[name] !== undefined) {
 					clearTimeout(storage._ttlTimoouts[name]);
 
