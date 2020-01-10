@@ -3,7 +3,7 @@ const cache = require("../../src/cache");
 describe("cache", function() {
 	it("It fails, when wront protocol for cache is configured", function(done) {
 		cache("justsomebullchitprotocol://").then(() => {
-			done("Accepted invalid protocol");
+			done(new Error("Accepted invalid protocol"));
 		}).catch(() => {
 			done();
 		});

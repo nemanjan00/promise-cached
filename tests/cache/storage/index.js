@@ -19,7 +19,7 @@ module.exports = (name, engine) => {
 		it("Stores kev-value pairs", function(done) {
 			engine.then(implementation => {
 				if(implementation.store === undefined) {
-					done("There is no store function");
+					done(new Error("There is no store function"));
 					return;
 				}
 
@@ -34,7 +34,7 @@ module.exports = (name, engine) => {
 		it("Returns stored kev-value pairs", function(done) {
 			engine.then(implementation => {
 				if(implementation.store === undefined) {
-					done("There is no store function");
+					done(new Error("There is no store function"));
 					return;
 				}
 
@@ -48,7 +48,7 @@ module.exports = (name, engine) => {
 						if(value == "value") {
 							done();
 						} else {
-							done("Wrong value returned");
+							done(new Error("Wrong value returned"));
 						}
 					}).catch((error) => {
 						done(error);
@@ -62,23 +62,54 @@ module.exports = (name, engine) => {
 		it("Stored key-value pairs expire", function(done) {
 			engine.then(implementation => {
 				if(implementation.store === undefined) {
-					done("There is no store function");
+					done(new Error("There is no store function"));
 					return;
 				}
 
 				implementation.store("name", "value").then(() => {
 					if(implementation.get === undefined) {
-						done("There is no get function");
+						done(new Error("There is no get function"));
 						return;
 					}
 
 					setTimeout(() => {
 						implementation.get("name").then(() => {
-							done("Value did not expire");
+							done(new Error("Value did not expire"));
 						}).catch(() => {
 							done();
 						});
 					}, 1500);
+				}).catch((error) => {
+					done(error);
+				});
+			});
+		});
+
+		it("Stored key-value pairs can be cleared", function(done) {
+			engine.then(implementation => {
+				if(implementation.store === undefined) {
+					done(new Error("There is no store function"));
+					return;
+				}
+
+				implementation.store("name", "value").then(() => {
+					if(implementation.clear === undefined) {
+						done(new Error("There is no clear function"));
+						return;
+					}
+
+					implementation.clear("name").then(() => {
+						if(implementation.get === undefined) {
+							done(new Error("There is no get function"));
+							return;
+						}
+
+						implementation.get("name").then(() => {
+							done(new Error("Value was not cleared"));
+						}).catch(() => {
+							done();
+						});
+					});
 				}).catch((error) => {
 					done(error);
 				});
