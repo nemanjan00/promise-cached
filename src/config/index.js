@@ -5,6 +5,7 @@ const config = {
 	set: (name, value) => {
 		return config[name] = value;
 	},
+
 	get: (name) => {
 		return config.set(name, config._config[name] || config.getEnv(name) || config.getDefault(name));
 	},
@@ -16,6 +17,7 @@ const config = {
 
 		return config._defaults;
 	},
+
 	getDefault: (name) => {
 		return config.setDefaults()[name];
 	},
