@@ -7,6 +7,7 @@
     "lint": "./dev/lint.sh",
     "mkdocs": "./dev/makedocs.sh",
     "test": "nyc mocha --reporter spec --timeout 60000 tests/index.js",
+    "test-coverage": "nyc --reporter=json mocha --reporter spec --timeout 60000 tests/index.js",
     "coverage": "nyc report --reporter=text-lcov"
   },
   "husky": {
