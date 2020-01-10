@@ -6,12 +6,25 @@ Transparent cache for promise response for Node.js
 
 <!-- vim-markdown-toc GFM -->
 
+* [Constraints](#constraints)
 * [Installation](#installation)
 	* [Yarn](#yarn)
 	* [NPM](#npm)
-	* [Usage](#usage)
+* [Usage](#usage)
+	* [Basic usage](#basic-usage)
+	* [Speeding up existing functions](#speeding-up-existing-functions)
+* [Contribution guide](#contribution-guide)
+	* [Editorconfig](#editorconfig)
+	* [Running tests](#running-tests)
+	* [Running linter](#running-linter)
+	* [Version numbering](#version-numbering)
+* [Authors](#authors)
 
 <!-- vim-markdown-toc -->
+
+## Constraints
+
+Whatever you are caching must be JSON seriazable.
 
 ## Installation
 
@@ -29,7 +42,11 @@ yarn add promise-cached
 npm install promise-cached --save
 ```
 
-### Usage
+## Usage
+
+This library provides wrapper for promise returning functions.
+
+### Basic usage
 
 ```javascript
 const promiseCached = require("promise-cached");
@@ -58,4 +75,58 @@ cachedFunction("💪").then(() => {
 	});
 });
 ```
+
+### Speeding up existing functions
+
+You can for example use this library to cache http responses.
+
+```javascript
+const promiseCached = require("promise-cached");
+
+const wrapper = promiseCached({
+	ttl: 10 * 1000 // Cache lasts for 10 seconds
+});
+
+const axios = require("axios");
+
+const originalGet = axios.get;
+
+axios.get = wrapper(originalGet);
+```
+
+## Contribution guide
+
+### Editorconfig
+
+To ensure code styling is maintained the same, on this project, we rely on [editorconfig](https://editorconfig.org/) standard.
+
+You probably can find plugin for your editor (if not included by default) on [official website](https://editorconfig.org/). 
+
+### Running tests
+
+``` bash
+yarn test
+
+# or for npm
+
+npm run tests
+```
+
+### Running linter
+
+```bash
+yarn lint
+
+# or for npm
+
+npm run lint
+```
+
+### Version numbering
+
+We are using [semver](https://semver.org/) version numbering standard. 
+
+## Authors
+
+* [nemanjan00](https://github.com/nemanjan00)
 
