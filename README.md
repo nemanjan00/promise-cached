@@ -1,5 +1,7 @@
 # promise-cached [![See on Github](https://github.com/themes/tactile/images/octocat-icon.png)](https://github.com/nemanjan00/promise-cached#promise-cached-)
 
+[![Build Status](https://travis-ci.org/nemanjan00/promise-cached.svg?branch=master)](https://travis-ci.org/nemanjan00/promise-cached)
+
 Transparent cache for promise response for Node.js
 
 ## Table of contents
