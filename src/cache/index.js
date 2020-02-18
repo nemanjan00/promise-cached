@@ -21,6 +21,6 @@ module.exports = (connectionUrl, options) => {
 		return Promise.reject("Specified cache protocol is not recognised: " + settingsUrl);
 	}
 
-	return engines[settings.protocol](connectionUrl, options);
+	return engines[settings.protocol](settingsUrl, options);
 };
 
