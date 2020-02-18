@@ -1,6 +1,6 @@
 {
   "name": "promise-cached",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Transparent cache for promise response for Node.js",
   "main": "index.js",
   "scripts": {
