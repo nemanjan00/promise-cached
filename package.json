@@ -38,7 +38,7 @@
     "husky": "^4.0.6",
     "implement-js": "^0.0.27",
     "node-cache-redis": "^2.14.0",
-    "redis": "^2.8.0"
+    "redis": "^3.1.1"
   },
   "devDependencies": {
     "eslint-plugin-mocha": "^6.2.2",
